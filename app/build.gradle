@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.bcampos.shufflesongs"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-rc01'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxJavaAndroidVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+
+    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
+    testImplementation "org.json:json:${jsonObjectVersion}"
+    testImplementation "androidx.test:core:${androidTestCoreVersion}"
+    testImplementation "org.robolectric:robolectric:${robolectricVersion}"
+    testImplementation "androidx.test:runner:${supportTestRunnerVersion}"
+    testImplementation "androidx.test:rules:${supportTestRulesVersion}"
+    testImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
+    testImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
+    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha01'
+
+
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
+    androidTestImplementation "androidx.test:runner:${supportTestRunnerVersion}"
+    androidTestImplementation "androidx.test:rules:${supportTestRulesVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
+    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
+}
