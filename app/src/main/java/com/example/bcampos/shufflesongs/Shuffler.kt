@@ -10,10 +10,10 @@ class Shuffler {
             val duplicatedSongsStack = Stack<Song>()
             duplicatedSongsStack.addAll(getDuplicatedSongs(songsList))
             val noDuplicatesSongsList = removeDuplicatedSongs(songsList)
-            return mergedSongs(duplicatedSongsStack, noDuplicatesSongsList)
+            return getMergedSongs(duplicatedSongsStack, noDuplicatesSongsList)
         }
 
-        private fun mergedSongs(
+        private fun getMergedSongs(
             duplicatedSongsStack: Stack<Song>,
             shuffledSongs: List<Song>
         ): List<Song> {
