@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.bcampos.shufflesongs.R
-import kotlinx.android.synthetic.main.songs_list_fragment.*
+import com.example.bcampos.shufflesongs.State
 
 class SongsListFragment : Fragment() {
 
     private var message: TextView? = null
+    private var progressBar: ProgressBar? = null
+    private var errorMessage: TextView? = null
 
     companion object {
         fun newInstance() = SongsListFragment()
@@ -32,17 +35,37 @@ class SongsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         message = view.findViewById(R.id.message)
+        errorMessage = view.findViewById(R.id.error_message)
+        progressBar = view.findViewById(R.id.progress_bar)
     }
-    var name = ""
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SongsListViewModel::class.java)
         viewModel.start()
-        viewModel.name.observe(this, Observer<String> {
-             message?.text = it
-        } )
-        // TODO: Use the ViewModel
+        viewModel.songsState.observe(this, Observer<State<String>> {
+            when(it.name) {
+                State.Name.IDLE -> {
+
+                }
+                State.Name.LOADING -> {
+                    message!!.visibility = View.GONE
+                    progressBar!!.visibility = View.VISIBLE
+                    errorMessage!!.visibility = View.GONE
+                }
+                State.Name.LOADED -> {
+                    message!!.visibility = View.VISIBLE
+                    progressBar!!.visibility = View.GONE
+                    errorMessage!!.visibility = View.GONE
+                }
+
+                State.Name.ERROR -> {
+                    message!!.visibility = View.GONE
+                    progressBar!!.visibility = View.GONE
+                    errorMessage!!.visibility = View.VISIBLE
+                }
+            }
+        })
     }
 
 }
