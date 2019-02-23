@@ -59,11 +59,4 @@ class SongsListFragmentTest {
         onView(withId(R.id.message)).check(matches((isDisplayed())))
         onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())))
     }
-
-
-    @Test
-    fun testName() {
-        val viewModel = SongsListViewModel()
-        Assert.assertEquals("songsState", viewModel.getName())
-    }
 }

@@ -10,13 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.bcampos.shufflesongs.R
+import com.example.bcampos.shufflesongs.Song
 import com.example.bcampos.shufflesongs.State
+import com.example.bcampos.shufflesongs.data.SongsRepository
 
 class SongsListFragment : Fragment() {
 
     private var message: TextView? = null
     private var progressBar: ProgressBar? = null
     private var errorMessage: TextView? = null
+
+    private val songsUseCase = SongsRepository()
+    private val viewModelFactory = SongsViewModelFactory(songsUseCase)
 
     companion object {
         fun newInstance() = SongsListFragment()
@@ -41,9 +46,9 @@ class SongsListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SongsListViewModel::class.java)
-        viewModel.start()
-        viewModel.songsState.observe(this, Observer<State<String>> {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SongsListViewModel::class.java)
+
+        viewModel.songsState.observe(this, Observer<State<List<Song>>> {
             when(it.name) {
                 State.Name.IDLE -> {
 
