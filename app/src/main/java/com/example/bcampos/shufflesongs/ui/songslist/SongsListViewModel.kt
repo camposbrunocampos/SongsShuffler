@@ -8,10 +8,10 @@ import com.example.bcampos.shufflesongs.data.SongsListener
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
 
 
-class SongsListViewModel(val songsUseCase: SongsUseCase) : ViewModel(), SongsListener {
+class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), SongsListener {
 
     override fun updateState(state: State<List<Song>>) {
-        songsState.value = state
+        songsState.postValue(state)
     }
 
     val songsState: MutableLiveData<State<List<Song>>> by lazy {
@@ -25,11 +25,7 @@ class SongsListViewModel(val songsUseCase: SongsUseCase) : ViewModel(), SongsLis
         songsUseCase.loadSongsList()
     }
 
-
-
     fun getName(): String {
         return "songsState"
     }
-
-
 }
