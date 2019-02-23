@@ -1,6 +1,8 @@
 package com.example.bcampos.shufflesongs
 
 import androidx.test.runner.AndroidJUnit4
+import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.ui.songslist.SongsListViewModel
 import org.junit.Assert
 import org.junit.Test
@@ -14,10 +16,18 @@ class SongsListViewModelTest {
         val songsUseCase = MockedSongsRepository()
         val viewModel = SongsListViewModel(songsUseCase)
         songsUseCase.registerListener(viewModel)
-        songsUseCase.mockedResponse = State(State.Name.ERROR, emptyList())
+        songsUseCase.mockedResponse = State(
+            State.Name.ERROR,
+            emptyList()
+        )
         songsUseCase.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value, State(State.Name.ERROR, ArrayList<Song>()))
+        Assert.assertEquals(viewModel.songsState.value,
+            State(
+                State.Name.ERROR,
+                ArrayList<Song>()
+            )
+        )
     }
 
     @Test
@@ -26,10 +36,18 @@ class SongsListViewModelTest {
         val viewModel = SongsListViewModel(songsUseCase)
         songsUseCase.registerListener(viewModel)
         val mockedSongsList = listOf(Song("bla", "bla"))
-        songsUseCase.mockedResponse = State(State.Name.LOADED, mockedSongsList)
+        songsUseCase.mockedResponse = State(
+            State.Name.LOADED,
+            mockedSongsList
+        )
         songsUseCase.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value, State(State.Name.LOADED, mockedSongsList))
+        Assert.assertEquals(viewModel.songsState.value,
+            State(
+                State.Name.LOADED,
+                mockedSongsList
+            )
+        )
     }
 
     @Test
@@ -37,10 +55,18 @@ class SongsListViewModelTest {
         val songsUseCase = MockedSongsRepository()
         val viewModel = SongsListViewModel(songsUseCase)
         songsUseCase.registerListener(viewModel)
-        songsUseCase.mockedResponse = State(State.Name.LOADING, listOf())
+        songsUseCase.mockedResponse = State(
+            State.Name.LOADING,
+            listOf()
+        )
         songsUseCase.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value, State(State.Name.LOADING, ArrayList<Song>()))
+        Assert.assertEquals(viewModel.songsState.value,
+            State(
+                State.Name.LOADING,
+                ArrayList<Song>()
+            )
+        )
     }
 
 }

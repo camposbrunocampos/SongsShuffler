@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.bcampos.shufflesongs.R
-import com.example.bcampos.shufflesongs.Song
-import com.example.bcampos.shufflesongs.State
+import com.example.bcampos.shufflesongs.domain.Song
+import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.data.SongsRepository
 
 class SongsListFragment : Fragment() {

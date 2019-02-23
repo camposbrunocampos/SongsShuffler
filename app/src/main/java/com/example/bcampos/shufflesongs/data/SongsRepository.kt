@@ -1,7 +1,5 @@
 package com.example.bcampos.shufflesongs.data
 
-import com.example.bcampos.shufflesongs.Song
-import com.example.bcampos.shufflesongs.State
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
 
 class SongsRepository: SongsUseCase {

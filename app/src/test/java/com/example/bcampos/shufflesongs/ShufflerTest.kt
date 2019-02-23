@@ -1,5 +1,6 @@
 package com.example.bcampos.shufflesongs
 
+import com.example.bcampos.shufflesongs.domain.Song
 import org.junit.Assert
 import org.junit.Test
 
@@ -12,13 +13,15 @@ class ShufflerTest {
             Song("red hot", "under the bridge"),
             Song("red hot", "the zephyr song"),
             Song("red hot", "fly song"),
-            Song("Ed Sheraan", "shape of you"))
+            Song("Ed Sheraan", "shape of you")
+        )
 
         val expectedShuffledSongs = listOf(
             Song("Ed Sheraan", "love"),
             Song("red hot", "under the bridge"),
             Song("Ed Sheraan", "shape of you"),
-            Song("red hot", "fly song"))
+            Song("red hot", "fly song")
+        )
 
         Assert.assertEquals(expectedShuffledSongs, Shuffler.shuffle(shuffledSongs, true))
     }
@@ -33,7 +36,8 @@ class ShufflerTest {
             Song("MC kevin", "samba mucosa"),
             Song("MC Don juan", "hoje"),
             Song("MC Don juan", "sarrei"),
-            Song("Ed Sheraan", "shape of you"))
+            Song("Ed Sheraan", "shape of you")
+        )
 
         val expectedShuffledSongs = listOf(
             Song("Ed Sheraan", "love"),
@@ -51,10 +55,15 @@ class ShufflerTest {
 
     @Test
     fun shouldGetInsertedIndexes() {
-        val songsWithoutDuplication = listOf(Song("Ed Sheraan", "love"),
-            Song("red hot", "under the bridge"))
+        val songsWithoutDuplication = listOf(
+            Song("Ed Sheraan", "love"),
+            Song("red hot", "under the bridge")
+        )
 
-        val expectedDuplicatedSongs = listOf(Song("red hot", "the zephyr song"), Song("Ed Sheraan", "shape of you"))
+        val expectedDuplicatedSongs = listOf(
+            Song("red hot", "the zephyr song"),
+            Song("Ed Sheraan", "shape of you")
+        )
 
 //        Assert.assertEquals(listOf(1,3), Shuffler.getInsertedIndexes(expectedDuplicatedSongs, songsWithoutDuplication))
     }
@@ -62,14 +71,17 @@ class ShufflerTest {
     @Test
     fun shouldRemoveDuplicatedArtistsFromSongs() {
         val shuffledSongs = listOf(
-          Song("Ed Sheraan", "love"),
-          Song("red hot", "under the bridge"),
-          Song("red hot", "the zephyr song"),
-          Song("red hot", "fly song"),
-          Song("Ed Sheraan", "shape of you"))
+            Song("Ed Sheraan", "love"),
+            Song("red hot", "under the bridge"),
+            Song("red hot", "the zephyr song"),
+            Song("red hot", "fly song"),
+            Song("Ed Sheraan", "shape of you")
+        )
 
-        val expectedSongs = listOf(Song("Ed Sheraan", "love"),
-        Song("red hot", "under the bridge"))
+        val expectedSongs = listOf(
+            Song("Ed Sheraan", "love"),
+            Song("red hot", "under the bridge")
+        )
 
         Assert.assertEquals(expectedSongs, Shuffler.removeDuplicatedSongs(shuffledSongs))
 
@@ -81,9 +93,13 @@ class ShufflerTest {
             Song("Ed Sheraan", "love"),
             Song("red hot", "under the bridge"),
             Song("red hot", "the zephyr song"),
-            Song("Ed Sheraan", "shape of you"))
+            Song("Ed Sheraan", "shape of you")
+        )
 
-        val expectedDuplicatedSongs = listOf(Song("red hot", "the zephyr song"), Song("Ed Sheraan", "shape of you"))
+        val expectedDuplicatedSongs = listOf(
+            Song("red hot", "the zephyr song"),
+            Song("Ed Sheraan", "shape of you")
+        )
 
         Assert.assertEquals(Shuffler.getDuplicatedSongs(duplicatedSongs), expectedDuplicatedSongs)
     }

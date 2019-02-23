@@ -1,6 +1,8 @@
 package com.example.bcampos.shufflesongs
 
 import com.example.bcampos.shufflesongs.data.SongsListener
+import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
 
 class MockedSongsRepository: SongsUseCase {

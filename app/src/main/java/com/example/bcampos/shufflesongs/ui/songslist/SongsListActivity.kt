@@ -1,8 +1,8 @@
-package com.example.bcampos.shufflesongs
+package com.example.bcampos.shufflesongs.ui.songslist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bcampos.shufflesongs.ui.songslist.SongsListFragment
+import com.example.bcampos.shufflesongs.R
 
 class SongsListActivity : AppCompatActivity() {
 

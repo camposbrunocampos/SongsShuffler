@@ -1,5 +1,6 @@
 package com.example.bcampos.shufflesongs
 
+import com.example.bcampos.shufflesongs.domain.Song
 import java.util.*
 
 class Shuffler {
