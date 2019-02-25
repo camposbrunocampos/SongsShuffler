@@ -1,6 +1,7 @@
 package com.example.bcampos.shufflesongs.ui.songslist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -36,6 +37,7 @@ class SongsListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.songs_list_fragment, container, false)
     }
 
@@ -80,6 +82,18 @@ class SongsListFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_songs_list, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_shuffle) {
+            viewModel.shuffleSongs()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

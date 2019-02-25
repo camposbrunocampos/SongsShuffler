@@ -22,9 +22,4 @@ class SongsListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_songs_list, menu);
-        return true
-    }
-
 }

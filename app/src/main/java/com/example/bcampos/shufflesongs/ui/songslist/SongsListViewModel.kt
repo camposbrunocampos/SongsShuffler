@@ -2,6 +2,7 @@ package com.example.bcampos.shufflesongs.ui.songslist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bcampos.shufflesongs.Shuffler
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.data.SongsListener
@@ -27,5 +28,10 @@ class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), 
 
     fun getName(): String {
         return "songsState"
+    }
+
+    fun shuffleSongs() {
+        val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
+        songsState.value = State(State.Name.LOADED,shuffledSongs)
     }
 }
