@@ -1,5 +1,6 @@
 package com.example.bcampos.shufflesongs.ui.songslist
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.ProgressBar
@@ -10,21 +11,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.R
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.State
-import com.example.bcampos.shufflesongs.data.SongsRepository
-import okhttp3.OkHttpClient
 
 class SongsListFragment : Fragment() {
+
+    private lateinit var dependencyManager: DependencyManager
 
     private var songsRecyclerView: RecyclerView? = null
     private var progressBar: ProgressBar? = null
     private var errorMessage: TextView? = null
-
-    private val songsUseCase = SongsRepository(OkHttpClient())
-    private val viewModelFactory = SongsViewModelFactory(songsUseCase)
-
     private var songsListAdapter: SongsListAdapter? = null
 
     companion object {
@@ -32,6 +30,11 @@ class SongsListFragment : Fragment() {
     }
 
     private lateinit var viewModel: SongsListViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        dependencyManager = context.applicationContext as DependencyManager
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,14 +52,14 @@ class SongsListFragment : Fragment() {
         progressBar = view.findViewById(R.id.progress_bar)
 
         songsRecyclerView?.layoutManager = LinearLayoutManager(context)
-        songsListAdapter = SongsListAdapter(mutableListOf())
+        songsListAdapter = SongsListAdapter(mutableListOf(), dependencyManager.getImageLoader())
         songsRecyclerView?.adapter = songsListAdapter
         songsRecyclerView?.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SongsListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, dependencyManager.getSongViewModelFactory()).get(SongsListViewModel::class.java)
         viewModel.loadSongs()
         viewModel.songsState.observe(this, Observer<State<List<Song>>> {
             when(it.name) {
