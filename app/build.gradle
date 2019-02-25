@@ -43,14 +43,15 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
     testImplementation "androidx.test:core:${androidTestCoreVersion}"
     testImplementation "org.robolectric:robolectric:${robolectricVersion}"
-    testImplementation "androidx.test:runner:${supportTestRunnerVersion}"
-    testImplementation "androidx.test:rules:${supportTestRulesVersion}"
+    testImplementation "androidx.test:runner:${testRunnerVersion}"
+    testImplementation "androidx.test:rules:${testRulesVersion}"
     testImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
     testImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
+
     debugImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha01'
 
-//    androidTestImplementation "androidx.test:runner:${supportTestRunnerVersion}"
-//    androidTestImplementation "androidx.test:rules:${supportTestRulesVersion}"
+//    androidTestImplementation "androidx.test:runner:${testRunnerVersion}"
+//    androidTestImplementation "androidx.test:rules:${testRulesVersion}"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
 //    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
 //    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"

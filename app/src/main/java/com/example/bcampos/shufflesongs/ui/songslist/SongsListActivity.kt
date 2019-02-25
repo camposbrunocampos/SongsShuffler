@@ -23,6 +23,6 @@ class SongsListActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(toolbar)
-    }
 
+    }
 }
