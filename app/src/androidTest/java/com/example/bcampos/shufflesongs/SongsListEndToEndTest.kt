@@ -2,6 +2,7 @@ package com.example.bcampos.shufflesongs
 
 import android.content.Intent
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,10 +18,10 @@ class SongsListEndToEndTest {
     val rule: ActivityTestRule<SongsListActivity> = ActivityTestRule(SongsListActivity::class.java, true, false)
 
     @Test
-    fun shouldShowSongsList() {
+    fun shouldLoadSongsList() {
         rule.launchActivity(Intent())
 
-        Thread.sleep(10000)
+        Thread.sleep(5000)
 
         Espresso.onView(ViewMatchers.withId(R.id.error_message))
             .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.GONE)))
@@ -28,5 +29,14 @@ class SongsListEndToEndTest {
             .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
         Espresso.onView(ViewMatchers.withId(R.id.progress_bar))
             .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.GONE)))
+    }
+
+    @Test
+    fun shouldShuffleSongs() {
+        rule.launchActivity(Intent())
+
+        Thread.sleep(5000)
+
+        Espresso.onView(ViewMatchers.withId(R.id.action_shuffle)).perform(click())
     }
 }
