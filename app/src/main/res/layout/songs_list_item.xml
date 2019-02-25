@@ -5,6 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:id="@+id/songslist">
 
     <ImageView
@@ -25,7 +27,9 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             android:textColor="@color/pink"
+            android:textStyle="bold"
             tools:text="trackName"
+            android:textSize="14sp"
             app:layout_constraintTop_toTopOf="@id/track_image"
             app:layout_constraintBottom_toTopOf="@+id/track_artist"
             app:layout_constraintVertical_chainStyle="packed" app:layout_constraintStart_toEndOf="@+id/track_image"
@@ -37,6 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="23dp"
             android:visibility="visible"
+            android:textSize="14sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/track_image"
             android:layout_marginStart="8dp"
@@ -50,6 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
+            android:textSize="14sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_marginStart="10dp"
             app:layout_constraintLeft_toRightOf="@id/track_artist"

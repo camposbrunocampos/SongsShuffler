@@ -7,9 +7,8 @@ import com.example.bcampos.shufflesongs.domain.State
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.*
-import java.io.IOException
 import org.json.JSONObject
-
+import java.io.IOException
 
 
 class SongsRepository(
@@ -34,21 +33,19 @@ class SongsRepository(
                 try {
                     val json = response.body()!!.string()
                     val jsonObject = JSONObject(json)
-                    val songsJson = jsonObject.getString("results")
+                    val resultsJson = jsonObject.getString("results")
 
                     val songType = object : TypeToken<List<Song>>() {}.type
-                    val songs = Gson().fromJson<List<Song>>(songsJson, songType)
-                    val filteredSongs = filterSongsWithType(songs, "track")
+                    val songsList = Gson().fromJson<List<Song>>(resultsJson, songType)
+                    val filteredSongsList = filterSongsWithType(songsList, "track")
 
-                    songsListener?.updateState(State(State.Name.LOADED, filteredSongs))
+                    songsListener?.updateState(State(State.Name.LOADED, filteredSongsList))
                 } catch (e: Exception) {
                     Log.e(SongsRepository::class.java.toString(), "Error" + e.message)
                     songsListener?.updateState(State(State.Name.ERROR, emptyList()))
                 }
             }
         })
-
-
     }
 
     override fun registerListener(listener: SongsListener) {

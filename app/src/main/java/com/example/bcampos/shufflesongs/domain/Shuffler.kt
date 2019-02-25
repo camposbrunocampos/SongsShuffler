@@ -1,35 +1,32 @@
-package com.example.bcampos.shufflesongs
+package com.example.bcampos.shufflesongs.domain
 
-import com.example.bcampos.shufflesongs.domain.Song
 import java.util.*
 
 class Shuffler {
     companion object {
         fun shuffle(songs: List<Song>, isShuffled: Boolean = false): List<Song> {
             var songsList = songs
+
             if (!isShuffled) songsList = songs.shuffled()
+
             val duplicatedSongsStack = Stack<Song>()
             duplicatedSongsStack.addAll(getDuplicatedSongs(songsList))
+
             val noDuplicatesSongsList = removeDuplicatedSongs(songsList)
+
             return getMergedSongs(duplicatedSongsStack, noDuplicatesSongsList)
         }
 
-        private fun getMergedSongs(
-            duplicatedSongsStack: Stack<Song>,
-            shuffledSongs: List<Song>
-        ): List<Song> {
-            val mergedSongs = shuffledSongs.toMutableList()
+        private fun getMergedSongs(duplicatedSongsStack: Stack<Song>, noDuplicatesSongsList: List<Song>): List<Song> {
+            val mergedSongs = noDuplicatesSongsList.toMutableList()
             while (!duplicatedSongsStack.empty()) {
                 val song = duplicatedSongsStack.pop()
-                insertSongAvoidingRepeating(mergedSongs, song)
+                insertSongsAvoidingRepeating(mergedSongs, song)
             }
             return mergedSongs
         }
 
-        private fun insertSongAvoidingRepeating(
-            mergedSongs: MutableList<Song>,
-            song: Song
-        ) {
+        private fun insertSongsAvoidingRepeating(mergedSongs: MutableList<Song>, song: Song) {
             for (songIndex in mergedSongs.indices) {
                 if (songIndex + 1 == mergedSongs.count()
                     && !song.artistName.equals(mergedSongs[songIndex].artistName, true)
@@ -65,7 +62,7 @@ class Shuffler {
             for (song in shuffledSongs) {
                 if (artistsHashSet.contains(song.artistName.toLowerCase())) {
                     duplicatedSongs.add(song)
-                }  else {
+                } else {
                     artistsHashSet.add(song.artistName.toLowerCase())
                 }
 

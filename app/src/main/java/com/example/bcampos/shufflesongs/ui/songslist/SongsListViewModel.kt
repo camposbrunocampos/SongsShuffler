@@ -2,7 +2,7 @@ package com.example.bcampos.shufflesongs.ui.songslist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bcampos.shufflesongs.Shuffler
+import com.example.bcampos.shufflesongs.domain.Shuffler
 import com.example.bcampos.shufflesongs.data.SongsListener
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
