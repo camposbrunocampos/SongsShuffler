@@ -1,11 +1,12 @@
-package com.example.bcampos.shufflesongs
+package com.example.bcampos.shufflesongs.mock
 
 import android.app.Application
 import android.widget.ImageView
+import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
 
-class ShufflerSongsApplicationTest: Application(), DependencyManager {
+class MockShufflerSongsApplication: Application(), DependencyManager {
     override fun getSongViewModelFactory(): SongsViewModelFactory {
         return songsViewModelFactory
     }

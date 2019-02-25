@@ -1,4 +1,4 @@
-package com.example.bcampos.shufflesongs
+package com.example.bcampos.shufflesongs.mock
 
 import com.example.bcampos.shufflesongs.data.SongsListener
 import com.example.bcampos.shufflesongs.domain.State

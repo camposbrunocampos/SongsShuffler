@@ -9,6 +9,8 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.mock.MockShufflerSongsApplication
+import com.example.bcampos.shufflesongs.mock.MockedSongsRepository
 import com.example.bcampos.shufflesongs.ui.songslist.SongsListActivity
 import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
 import com.squareup.picasso.Picasso
@@ -21,7 +23,7 @@ import org.mockito.MockitoAnnotations
 import org.robolectric.annotation.Config
 
 
-@Config(application = ShufflerSongsApplicationTest::class)
+@Config(application = MockShufflerSongsApplication::class)
 @RunWith(AndroidJUnit4::class)
 class SongsListFragmentTest {
 
@@ -44,7 +46,7 @@ class SongsListFragmentTest {
             emptyList()
         )
 
-        ApplicationProvider.getApplicationContext<ShufflerSongsApplicationTest>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
+        ApplicationProvider.getApplicationContext<MockShufflerSongsApplication>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
 
         rule.launchActivity(Intent())
 
@@ -61,7 +63,7 @@ class SongsListFragmentTest {
             emptyList()
         )
 
-        ApplicationProvider.getApplicationContext<ShufflerSongsApplicationTest>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
+        ApplicationProvider.getApplicationContext<MockShufflerSongsApplication>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
 
         rule.launchActivity(Intent())
 
@@ -85,7 +87,7 @@ class SongsListFragmentTest {
             songsList
         )
 
-        ApplicationProvider.getApplicationContext<ShufflerSongsApplicationTest>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
+        ApplicationProvider.getApplicationContext<MockShufflerSongsApplication>().songsViewModelFactory = SongsViewModelFactory(mockedSongsRepo)
 
         rule.launchActivity(Intent())
 
