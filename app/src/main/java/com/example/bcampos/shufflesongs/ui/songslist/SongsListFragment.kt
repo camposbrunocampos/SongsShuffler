@@ -1,13 +1,13 @@
 package com.example.bcampos.shufflesongs.ui.songslist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bcampos.shufflesongs.R
@@ -51,6 +51,7 @@ class SongsListFragment : Fragment() {
         songsRecyclerView?.layoutManager = LinearLayoutManager(context)
         songsListAdapter = SongsListAdapter(mutableListOf())
         songsRecyclerView?.adapter = songsListAdapter
+        songsRecyclerView?.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
