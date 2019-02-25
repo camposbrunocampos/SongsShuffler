@@ -17,6 +17,7 @@
             app:titleTextColor="@color/white"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="10dp"
     />
 
     <FrameLayout
