@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.example.bcampos.shufflesongs"
         minSdkVersion 21
@@ -38,12 +39,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
-    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
-    testImplementation "org.json:json:${jsonObjectVersion}"
     testImplementation "androidx.test:core:${androidTestCoreVersion}"
     testImplementation "org.robolectric:robolectric:${robolectricVersion}"
     testImplementation "androidx.test:runner:${supportTestRunnerVersion}"
@@ -52,11 +49,9 @@ dependencies {
     testImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
     debugImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha01'
 
-
-    androidTestImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
-    androidTestImplementation "androidx.test:runner:${supportTestRunnerVersion}"
-    androidTestImplementation "androidx.test:rules:${supportTestRulesVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
-    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
-    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
+//    androidTestImplementation "androidx.test:runner:${supportTestRunnerVersion}"
+//    androidTestImplementation "androidx.test:rules:${supportTestRulesVersion}"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
+//    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
+//    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
 }
