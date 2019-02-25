@@ -11,8 +11,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".ui.songslist.SongsListActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-        >
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

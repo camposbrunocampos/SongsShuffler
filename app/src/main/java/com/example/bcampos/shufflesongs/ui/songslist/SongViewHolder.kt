@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bcampos.shufflesongs.R
 import com.example.bcampos.shufflesongs.domain.Song
+import com.example.bcampos.shufflesongs.ui.songslist.utils.CircleImageTransformation
 import com.squareup.picasso.Picasso
 
 class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -16,7 +17,7 @@ class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun updateSong(song: Song) {
         trackNameText.text = song.trackName
-        Picasso.get().load(song.artworkUrl).into(trackImage)
+        Picasso.get().load(song.artworkUrl).transform(CircleImageTransformation()).into(trackImage)
         trackArtist.text = song.artistName
         trackGender.text = String.format("(%s)", song.primaryGenreName)
     }

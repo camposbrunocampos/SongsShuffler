@@ -11,6 +11,7 @@ class SongsListActivity : AppCompatActivity() {
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.songs_list_activity)
         if (savedInstanceState == null) {
