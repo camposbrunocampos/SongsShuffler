@@ -22,9 +22,11 @@ class SongsRepository(
         val request = Request.Builder()
             .url("https://us-central1-tw-exercicio-mobile.cloudfunctions.net/lookup?id=909253,1171421960,358714030")
             .build()
+        songsListener?.updateState(State(State.Name.LOADING, emptyList()))
 
         httpClient.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
+                Log.e(SongsRepository::class.java.toString(), "onFailure" + e.message)
                 songsListener?.updateState(State(State.Name.ERROR, emptyList()))
             }
 
@@ -40,7 +42,7 @@ class SongsRepository(
 
                     songsListener?.updateState(State(State.Name.LOADED, filteredSongs))
                 } catch (e: Exception) {
-                    Log.e(SongsRepository::class.java.toString(), "Error" + e.localizedMessage)
+                    Log.e(SongsRepository::class.java.toString(), "Error" + e.message)
                     songsListener?.updateState(State(State.Name.ERROR, emptyList()))
                 }
             }
