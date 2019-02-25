@@ -3,10 +3,13 @@ package com.example.bcampos.shufflesongs.ui.songslist
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bcampos.shufflesongs.Shuffler
-import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.data.SongsListener
+import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
+import com.example.bcampos.shufflesongs.domain.State
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), SongsListener {
@@ -19,19 +22,18 @@ class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), 
         MutableLiveData<State<List<Song>>>()
     }
 
-
-
     fun loadSongs() {
         songsUseCase.registerListener(this)
         songsUseCase.loadSongsList()
     }
 
-    fun getName(): String {
-        return "songsState"
-    }
-
     fun shuffleSongs() {
-        val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
-        songsState.value = State(State.Name.LOADED,shuffledSongs)
+        songsState.value = State(State.Name.LOADING, songsState.value?.value)
+        GlobalScope.launch {
+            delay(1000)
+            val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
+            songsState.postValue(State(State.Name.LOADED,shuffledSongs))
+        }
+
     }
 }

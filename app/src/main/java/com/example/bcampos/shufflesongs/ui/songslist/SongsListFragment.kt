@@ -51,6 +51,10 @@ class SongsListFragment : Fragment() {
         errorMessage = view.findViewById(R.id.error_message)
         progressBar = view.findViewById(R.id.progress_bar)
 
+        setupSongsRecyclerView()
+    }
+
+    private fun setupSongsRecyclerView() {
         songsRecyclerView?.layoutManager = LinearLayoutManager(context)
         songsListAdapter = SongsListAdapter(mutableListOf(), dependencyManager.getImageLoader())
         songsRecyclerView?.adapter = songsListAdapter
