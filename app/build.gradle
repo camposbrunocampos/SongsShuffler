@@ -32,13 +32,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-rc01'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation "com.google.android.material:material:$androidMaterialVersion"
     implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
 
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
@@ -49,11 +49,11 @@ dependencies {
     testImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
     testImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
 
-    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-alpha01'
+    androidTestImplementation 'junit:junit:4.12'
 
-//    androidTestImplementation "androidx.test:runner:${testRunnerVersion}"
-//    androidTestImplementation "androidx.test:rules:${testRulesVersion}"
-//    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
-//    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
-//    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
+    androidTestImplementation "androidx.test:runner:${testRunnerVersion}"
+    androidTestImplementation "androidx.test:rules:${testRulesVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoVersion}"
+    androidTestImplementation "androidx.test:core:${androidTestCoreVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${androidJUnitVersion}"
 }

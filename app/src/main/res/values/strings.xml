@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ShuffleSongs</string>
+    <string name="app_name">Shuffle Songs</string>
+    <string name="error_message">Shuffle Songs</string>
 </resources>
