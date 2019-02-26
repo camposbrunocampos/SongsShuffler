@@ -25,11 +25,12 @@ class SongsListFragment : Fragment() {
     private var errorMessage: TextView? = null
     private var songsListAdapter: SongsListAdapter? = null
 
+    private lateinit var viewModel: SongsListViewModel
+
     companion object {
         fun newInstance() = SongsListFragment()
-    }
 
-    private lateinit var viewModel: SongsListViewModel
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

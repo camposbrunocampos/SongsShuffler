@@ -4,6 +4,6 @@ import com.example.bcampos.shufflesongs.data.SongsListener
 
 interface SongsUseCase {
     fun loadSongsList()
-    fun registerListener(songsListener: SongsListener)
+    fun registerListener(listener: SongsListener)
     fun clearListener()
 }

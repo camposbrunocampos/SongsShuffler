@@ -15,7 +15,7 @@ class SongsRepository(
     private val httpClient: OkHttpClient
 ) : SongsUseCase {
 
-    var songsListener: SongsListener? = null
+    private var songsListener: SongsListener? = null
 
     override fun loadSongsList() {
         val request = Request.Builder()
@@ -32,11 +32,7 @@ class SongsRepository(
             override fun onResponse(call: Call, response: Response) {
                 try {
                     val json = response.body()!!.string()
-                    val jsonObject = JSONObject(json)
-                    val resultsJson = jsonObject.getString("results")
-
-                    val songType = object : TypeToken<List<Song>>() {}.type
-                    val songsList = Gson().fromJson<List<Song>>(resultsJson, songType)
+                    val songsList = parseSongs(json)
                     val filteredSongsList = filterSongsWithType(songsList, "track")
 
                     songsListener?.updateState(State(State.Name.LOADED, filteredSongsList))
@@ -48,6 +44,18 @@ class SongsRepository(
         })
     }
 
+    private fun parseSongs(json: String): List<Song> {
+        val jsonObject = JSONObject(json)
+        val resultsJson = jsonObject.getString("results")
+
+        val songType = object : TypeToken<List<Song>>() {}.type
+        return Gson().fromJson<List<Song>>(resultsJson, songType)
+    }
+
+    fun filterSongsWithType(songs: List<Song>, filterType: String): List<Song> {
+        return songs.filter { it.wrapperType == filterType }
+    }
+
     override fun registerListener(listener: SongsListener) {
         songsListener = listener
         songsListener?.updateState(State(State.Name.IDLE))
@@ -55,9 +63,5 @@ class SongsRepository(
 
     override fun clearListener() {
         songsListener = null
-    }
-
-    fun filterSongsWithType(songs: List<Song>, filterType: String): List<Song> {
-        return songs.filter { it.wrapperType == filterType }
     }
 }

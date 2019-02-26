@@ -34,6 +34,10 @@ class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), 
             val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
             songsState.postValue(State(State.Name.LOADED,shuffledSongs))
         }
+    }
 
+    override fun onCleared() {
+        songsUseCase.clearListener()
+        super.onCleared()
     }
 }
