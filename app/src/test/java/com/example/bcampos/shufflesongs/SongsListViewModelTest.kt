@@ -1,6 +1,6 @@
 package com.example.bcampos.shufflesongs
 
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.mock.MockedSongsRepository

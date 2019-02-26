@@ -5,21 +5,17 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.mock.MockShufflerSongsApplication
 import com.example.bcampos.shufflesongs.mock.MockedSongsRepository
 import com.example.bcampos.shufflesongs.ui.songslist.SongsListActivity
 import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
-import com.squareup.picasso.Picasso
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 import org.robolectric.annotation.Config
 
 
@@ -29,14 +25,6 @@ class SongsListFragmentTest {
 
     @get:Rule
     val rule: ActivityTestRule<SongsListActivity> = ActivityTestRule(SongsListActivity::class.java, true, false)
-
-    @Mock
-    var picasso: Picasso? = null
-
-    @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
-    }
 
     @Test
     fun shouldShowErrorMessageWhenInErrorState() {
