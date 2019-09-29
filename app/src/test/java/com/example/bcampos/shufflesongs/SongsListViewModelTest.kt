@@ -1,9 +1,10 @@
 package com.example.bcampos.shufflesongs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.data.SongsRepository
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.mock.MockedSongsRepository
+import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.mock.MockedSongsSource
 import com.example.bcampos.shufflesongs.ui.songslist.SongsListViewModel
 import org.junit.Assert
 import org.junit.Test
@@ -14,16 +15,20 @@ class SongsListViewModelTest {
 
     @Test
     fun shouldLoadSongsWithError() {
-        val songsUseCase = MockedSongsRepository()
+        val songsUseCase = SongsRepository(
+            MockedSongsSource(
+                State(
+                    State.Name.ERROR,
+                    emptyList()
+                )
+            )
+        )
         val viewModel = SongsListViewModel(songsUseCase)
         songsUseCase.registerListener(viewModel)
-        songsUseCase.mockedResponse = State(
-            State.Name.ERROR,
-            emptyList()
-        )
         songsUseCase.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value,
+        Assert.assertEquals(
+            viewModel.songsState.value,
             State(
                 State.Name.ERROR,
                 ArrayList<Song>()
@@ -33,17 +38,21 @@ class SongsListViewModelTest {
 
     @Test
     fun shouldLoadSongsWithSuccess() {
-        val songsUseCase = MockedSongsRepository()
-        val viewModel = SongsListViewModel(songsUseCase)
-        songsUseCase.registerListener(viewModel)
         val mockedSongsList = listOf(Song("bla", "bla"))
-        songsUseCase.mockedResponse = State(
-            State.Name.LOADED,
-            mockedSongsList
+        val songsRepository = SongsRepository(
+            MockedSongsSource(
+                State(
+                    State.Name.LOADED,
+                    mockedSongsList
+                )
+            )
         )
-        songsUseCase.loadSongsList()
+        val viewModel = SongsListViewModel(songsRepository)
+        songsRepository.registerListener(viewModel)
+        songsRepository.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value,
+        Assert.assertEquals(
+            viewModel.songsState.value,
             State(
                 State.Name.LOADED,
                 mockedSongsList
@@ -53,16 +62,20 @@ class SongsListViewModelTest {
 
     @Test
     fun shouldStayInLoadingStateWhileLoadingSongs() {
-        val songsUseCase = MockedSongsRepository()
-        val viewModel = SongsListViewModel(songsUseCase)
-        songsUseCase.registerListener(viewModel)
-        songsUseCase.mockedResponse = State(
-            State.Name.LOADING,
-            listOf()
+        val songsRepository = SongsRepository(
+            MockedSongsSource(
+                State(
+                    State.Name.LOADING,
+                    listOf()
+                )
+            )
         )
-        songsUseCase.loadSongsList()
+        val viewModel = SongsListViewModel(songsRepository)
+        songsRepository.registerListener(viewModel)
+        songsRepository.loadSongsList()
 
-        Assert.assertEquals(viewModel.songsState.value,
+        Assert.assertEquals(
+            viewModel.songsState.value,
             State(
                 State.Name.LOADING,
                 ArrayList<Song>()

@@ -14,17 +14,16 @@ import kotlinx.coroutines.launch
 
 class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), SongsListener {
 
-    override fun updateState(state: State<List<Song>>) {
-        songsState.postValue(state)
-    }
-
     val songsState: MutableLiveData<State<List<Song>>> by lazy {
         MutableLiveData<State<List<Song>>>()
     }
 
     fun loadSongs() {
         songsUseCase.registerListener(this)
-        songsUseCase.loadSongsList()
+        GlobalScope.launch {
+            songsUseCase.loadSongsList()
+        }
+
     }
 
     fun shuffleSongs() {
@@ -34,6 +33,10 @@ class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), 
             val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
             songsState.postValue(State(State.Name.LOADED,shuffledSongs))
         }
+    }
+
+    override fun updateState(state: State<List<Song>>) {
+        songsState.postValue(state)
     }
 
     override fun onCleared() {

@@ -49,7 +49,7 @@ class ShufflerTest {
             Song("red hot", "the zephyr song"),
             Song("MC kevin", "samba mucosa"),
             Song("MC Don juan", "hoje")
-            )
+        )
 
         Assert.assertEquals(expectedShuffledSongs, Shuffler.shuffle(shuffledSongs, true))
     }

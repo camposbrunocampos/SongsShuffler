@@ -6,7 +6,7 @@ import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
 
-class MockShufflerSongsApplication: Application(), DependencyManager {
+class MockShufflerSongsApplication : Application(), DependencyManager {
     override fun getSongViewModelFactory(): SongsViewModelFactory {
         return songsViewModelFactory
     }
@@ -17,7 +17,7 @@ class MockShufflerSongsApplication: Application(), DependencyManager {
         return fakeImageLoader()
     }
 
-    class fakeImageLoader: ImageLoader {
+    class fakeImageLoader : ImageLoader {
         override fun load(view: ImageView, url: String) {
             //do nothing - no need of testing picasso image load for tests
         }

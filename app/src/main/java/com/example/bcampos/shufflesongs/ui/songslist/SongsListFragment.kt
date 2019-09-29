@@ -83,7 +83,6 @@ class SongsListFragment : Fragment() {
                     songsListAdapter?.updateList(it.value!!)
 
                 }
-
                 State.Name.ERROR -> {
                     songsRecyclerView!!.visibility = View.GONE
                     progressBar!!.visibility = View.GONE
