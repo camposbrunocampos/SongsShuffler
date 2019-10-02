@@ -1,5 +1,5 @@
 # Shuffling songs
-
+https://antonioleiva.com/clean-architecture-android/
 This is a sample project where the idea is to explore some of the Android jetpack components, like LiveData and ViewModel.
 In order to do that, I used the Clean Architecture approach for the project architecture. The main idea is to structure the project in 4 layers: 
 1. Presentation: This is the layer that interacts with the UI. This layer consists in classes of android UI (Views, Activities and Fragments) and a viewModel. The idea here is to separate business logic from the UI. This architecture is optimized for unit testing and makes it easy to do integration tests with it.
