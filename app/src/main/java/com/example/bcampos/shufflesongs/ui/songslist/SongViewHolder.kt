@@ -6,11 +6,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bcampos.shufflesongs.R
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.ui.songslist.utils.CircleImageTransformation
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
-import com.squareup.picasso.Picasso
 
-class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val trackNameText = itemView.findViewById<TextView>(R.id.track_name)
     private val trackImage = itemView.findViewById<ImageView>(R.id.track_image)
     private val trackArtist = itemView.findViewById<TextView>(R.id.track_artist)

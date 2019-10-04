@@ -1,5 +1,6 @@
-package com.example.bcampos.shufflesongs.domain
+package com.example.bcampos.shufflesongs.usecases
 
+import com.example.bcampos.shufflesongs.domain.Song
 import java.util.*
 
 class Shuffler {
@@ -10,18 +11,29 @@ class Shuffler {
             if (!isShuffled) songsList = songs.shuffled()
 
             val duplicatedSongsStack = Stack<Song>()
-            duplicatedSongsStack.addAll(getDuplicatedSongs(songsList))
+            duplicatedSongsStack.addAll(
+                getDuplicatedSongs(
+                    songsList
+                )
+            )
 
-            val noDuplicatesSongsList = removeDuplicatedSongs(songsList)
+            val noDuplicatesSongsList =
+                removeDuplicatedSongs(songsList)
 
-            return getMergedSongs(duplicatedSongsStack, noDuplicatesSongsList)
+            return getMergedSongs(
+                duplicatedSongsStack,
+                noDuplicatesSongsList
+            )
         }
 
         private fun getMergedSongs(duplicatedSongsStack: Stack<Song>, noDuplicatesSongsList: List<Song>): List<Song> {
             val mergedSongs = noDuplicatesSongsList.toMutableList()
             while (!duplicatedSongsStack.empty()) {
                 val song = duplicatedSongsStack.pop()
-                insertSongsAvoidingRepeating(mergedSongs, song)
+                insertSongsAvoidingRepeating(
+                    mergedSongs,
+                    song
+                )
             }
             return mergedSongs
         }

@@ -7,7 +7,7 @@ import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoaderImpl
 
-class ShufflerSongsApplication: Application(), DependencyManager {
+class ShufflerSongsApplication : Application(), DependencyManager {
     override fun getImageLoader(): ImageLoader {
         return imageLoader
     }

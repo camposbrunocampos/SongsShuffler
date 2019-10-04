@@ -3,7 +3,6 @@ package com.example.bcampos.shufflesongs.ui.songslist
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.R
 
 class SongsListActivity : AppCompatActivity() {

@@ -33,7 +33,7 @@ class SongsListViewModelTest {
     }
 
     @Test
-    fun shouldLoadSongsWithError()  {
+    fun shouldLoadSongsWithError() {
         val songsUseCase = SongsRepository(
             MockedSongsSource(
                 State(

@@ -3,9 +3,9 @@ package com.example.bcampos.shufflesongs.ui.songslist
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bcampos.shufflesongs.data.State
-import com.example.bcampos.shufflesongs.domain.Shuffler
+import com.example.bcampos.shufflesongs.usecases.Shuffler
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.domain.SongsUseCase
+import com.example.bcampos.shufflesongs.usecases.SongsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

@@ -13,12 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.R
-import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.data.State
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import com.example.bcampos.shufflesongs.domain.Song
 
 class SongsListFragment : Fragment() {
 

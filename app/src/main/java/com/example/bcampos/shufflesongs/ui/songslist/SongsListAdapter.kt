@@ -7,7 +7,8 @@ import com.example.bcampos.shufflesongs.R
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
 
-class SongsListAdapter(private var songs: MutableList<Song>, private var imageLoader: ImageLoader): RecyclerView.Adapter<SongViewHolder>() {
+class SongsListAdapter(private var songs: MutableList<Song>, private var imageLoader: ImageLoader) :
+    RecyclerView.Adapter<SongViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         return SongViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.songs_list_item, parent, false))

@@ -2,7 +2,7 @@ package com.example.bcampos.shufflesongs.ui.songslist;
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.bcampos.shufflesongs.domain.SongsUseCase
+import com.example.bcampos.shufflesongs.usecases.SongsUseCase
 import kotlinx.coroutines.Dispatchers
 
 class SongsViewModelFactory(private val songsUseCase: SongsUseCase) : ViewModelProvider.Factory {

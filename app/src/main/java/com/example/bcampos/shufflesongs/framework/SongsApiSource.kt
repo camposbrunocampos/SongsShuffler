@@ -2,15 +2,15 @@ package com.example.bcampos.shufflesongs.framework
 
 import android.util.Log
 import com.example.bcampos.shufflesongs.data.SongsRepository
-import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.data.State
+import com.example.bcampos.shufflesongs.domain.Song
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 
-class SongsApiSource: SongsRepository.SongsSource {
+class SongsApiSource : SongsRepository.SongsSource {
     override fun getSongs(): State<List<Song>> {
         val request = Request.Builder()
             .url("https://us-central1-tw-exercicio-mobile.cloudfunctions.net/lookup?id=909253,1171421960,358714030")

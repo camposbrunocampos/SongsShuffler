@@ -1,7 +1,7 @@
 package com.example.bcampos.shufflesongs
 
-import com.example.bcampos.shufflesongs.domain.Shuffler
 import com.example.bcampos.shufflesongs.domain.Song
+import com.example.bcampos.shufflesongs.usecases.Shuffler
 import org.junit.Assert
 import org.junit.Test
 
@@ -52,21 +52,6 @@ class ShufflerTest {
         )
 
         Assert.assertEquals(expectedShuffledSongs, Shuffler.shuffle(shuffledSongs, true))
-    }
-
-    @Test
-    fun shouldGetInsertedIndexes() {
-        val songsWithoutDuplication = listOf(
-            Song("Ed Sheraan", "love"),
-            Song("red hot", "under the bridge")
-        )
-
-        val expectedDuplicatedSongs = listOf(
-            Song("red hot", "the zephyr song"),
-            Song("Ed Sheraan", "shape of you")
-        )
-
-//        Assert.assertEquals(listOf(1,3), Shuffler.getInsertedIndexes(expectedDuplicatedSongs, songsWithoutDuplication))
     }
 
     @Test
