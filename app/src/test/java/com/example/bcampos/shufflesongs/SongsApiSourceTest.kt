@@ -1,7 +1,7 @@
 package com.example.bcampos.shufflesongs
 
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.framework.SongsAPISource
+import com.example.bcampos.shufflesongs.framework.SongsApiSource
 import org.junit.Assert
 import org.junit.Test
 
@@ -9,7 +9,7 @@ class SongsApiSourceTest {
 
     @Test
     fun shouldFilterSongs_withTrackType() {
-        val songsApiSource = SongsAPISource()
+        val songsApiSource = SongsApiSource()
         val mockedResponse = listOf(
             Song("Ed Sheraan", "love", "track"),
             Song("red hot", "under the bridge", "artist"),

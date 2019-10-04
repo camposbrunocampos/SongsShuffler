@@ -2,11 +2,10 @@ package com.example.bcampos.shufflesongs
 
 import android.app.Application
 import com.example.bcampos.shufflesongs.data.SongsRepository
-import com.example.bcampos.shufflesongs.framework.SongsAPISource
+import com.example.bcampos.shufflesongs.framework.SongsApiSource
 import com.example.bcampos.shufflesongs.ui.songslist.SongsViewModelFactory
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoader
 import com.example.bcampos.shufflesongs.ui.songslist.utils.ImageLoaderImpl
-import okhttp3.OkHttpClient
 
 class ShufflerSongsApplication: Application(), DependencyManager {
     override fun getImageLoader(): ImageLoader {
@@ -22,7 +21,7 @@ class ShufflerSongsApplication: Application(), DependencyManager {
 
     override fun onCreate() {
         super.onCreate()
-        songsViewModelFactory = SongsViewModelFactory(SongsRepository(SongsAPISource()))
+        songsViewModelFactory = SongsViewModelFactory(SongsRepository(SongsApiSource()))
         imageLoader = ImageLoaderImpl()
     }
 

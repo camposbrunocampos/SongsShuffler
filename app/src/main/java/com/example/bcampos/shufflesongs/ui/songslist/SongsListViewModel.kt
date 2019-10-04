@@ -3,27 +3,28 @@ package com.example.bcampos.shufflesongs.ui.songslist
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bcampos.shufflesongs.domain.Shuffler
-import com.example.bcampos.shufflesongs.data.SongsListener
 import com.example.bcampos.shufflesongs.domain.Song
 import com.example.bcampos.shufflesongs.domain.SongsUseCase
 import com.example.bcampos.shufflesongs.domain.State
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
-class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), SongsListener {
+class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel() {
 
     val songsState: MutableLiveData<State<List<Song>>> by lazy {
         MutableLiveData<State<List<Song>>>()
     }
 
-    fun loadSongs() {
-        songsUseCase.registerListener(this)
-        GlobalScope.launch {
-            songsUseCase.loadSongsList()
+    fun loadSongs() = runBlocking(context = Dispatchers.IO) {
+        launch {
+            fetchSongs()
         }
+    }
 
+    fun fetchSongs() {
+        songsState.postValue(State(State.Name.LOADING, emptyList()))
+        val songsResponse = songsUseCase.loadSongsList()
+        songsState.postValue(songsResponse)
     }
 
     fun shuffleSongs() {
@@ -31,16 +32,7 @@ class SongsListViewModel(private val songsUseCase: SongsUseCase) : ViewModel(), 
         GlobalScope.launch {
             delay(1000)
             val shuffledSongs = Shuffler.shuffle(songsState.value?.value!!, false)
-            songsState.postValue(State(State.Name.LOADED,shuffledSongs))
+            songsState.postValue(State(State.Name.LOADED, shuffledSongs))
         }
-    }
-
-    override fun updateState(state: State<List<Song>>) {
-        songsState.postValue(state)
-    }
-
-    override fun onCleared() {
-        songsUseCase.clearListener()
-        super.onCleared()
     }
 }

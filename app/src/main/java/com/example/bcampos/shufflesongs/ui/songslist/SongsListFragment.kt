@@ -66,6 +66,7 @@ class SongsListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, dependencyManager.getSongViewModelFactory()).get(SongsListViewModel::class.java)
         viewModel.loadSongs()
+
         viewModel.songsState.observe(this, Observer<State<List<Song>>> {
             when(it.name) {
                 State.Name.IDLE -> {

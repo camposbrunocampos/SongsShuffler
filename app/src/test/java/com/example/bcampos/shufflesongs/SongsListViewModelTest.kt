@@ -24,8 +24,8 @@ class SongsListViewModelTest {
             )
         )
         val viewModel = SongsListViewModel(songsUseCase)
-        songsUseCase.registerListener(viewModel)
-        songsUseCase.loadSongsList()
+        viewModel.fetchSongs()
+
 
         Assert.assertEquals(
             viewModel.songsState.value,
@@ -38,6 +38,7 @@ class SongsListViewModelTest {
 
     @Test
     fun shouldLoadSongsWithSuccess() {
+
         val mockedSongsList = listOf(Song("bla", "bla"))
         val songsRepository = SongsRepository(
             MockedSongsSource(
@@ -48,8 +49,8 @@ class SongsListViewModelTest {
             )
         )
         val viewModel = SongsListViewModel(songsRepository)
-        songsRepository.registerListener(viewModel)
-        songsRepository.loadSongsList()
+
+        viewModel.fetchSongs()
 
         Assert.assertEquals(
             viewModel.songsState.value,
@@ -71,8 +72,7 @@ class SongsListViewModelTest {
             )
         )
         val viewModel = SongsListViewModel(songsRepository)
-        songsRepository.registerListener(viewModel)
-        songsRepository.loadSongsList()
+        viewModel.fetchSongs()
 
         Assert.assertEquals(
             viewModel.songsState.value,
