@@ -8,8 +8,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.bcampos.shufflesongs.data.SongsRepository
+import com.example.bcampos.shufflesongs.data.State
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.domain.State
 import com.example.bcampos.shufflesongs.mock.MockShufflerSongsApplication
 import com.example.bcampos.shufflesongs.mock.MockedSongsSource
 import com.example.bcampos.shufflesongs.ui.songslist.SongsListActivity

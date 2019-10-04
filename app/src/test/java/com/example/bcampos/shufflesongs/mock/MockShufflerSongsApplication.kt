@@ -14,10 +14,10 @@ class MockShufflerSongsApplication : Application(), DependencyManager {
     lateinit var songsViewModelFactory: SongsViewModelFactory
 
     override fun getImageLoader(): ImageLoader {
-        return fakeImageLoader()
+        return FakeImageLoader()
     }
 
-    class fakeImageLoader : ImageLoader {
+    class FakeImageLoader : ImageLoader {
         override fun load(view: ImageView, url: String) {
             //do nothing - no need of testing picasso image load for tests
         }

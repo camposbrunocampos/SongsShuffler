@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bcampos.shufflesongs.DependencyManager
 import com.example.bcampos.shufflesongs.R
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.data.State
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class SongsListFragment : Fragment() {
 
@@ -62,11 +66,11 @@ class SongsListFragment : Fragment() {
         songsRecyclerView?.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, dependencyManager.getSongViewModelFactory()).get(SongsListViewModel::class.java)
         viewModel.loadSongs()
-
         viewModel.songsState.observe(this, Observer<State<List<Song>>> {
             when(it.name) {
                 State.Name.IDLE -> {

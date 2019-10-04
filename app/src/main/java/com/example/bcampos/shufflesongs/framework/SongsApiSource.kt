@@ -3,8 +3,7 @@ package com.example.bcampos.shufflesongs.framework
 import android.util.Log
 import com.example.bcampos.shufflesongs.data.SongsRepository
 import com.example.bcampos.shufflesongs.domain.Song
-import com.example.bcampos.shufflesongs.domain.SongsUseCase
-import com.example.bcampos.shufflesongs.domain.State
+import com.example.bcampos.shufflesongs.data.State
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
@@ -24,14 +23,23 @@ class SongsApiSource: SongsRepository.SongsSource {
                 val songsList = parseSongs(json)
                 val filteredSongsList = filterSongsWithType(songsList, "track")
 
-                return State(State.Name.LOADED, filteredSongsList)
+                return State(
+                    State.Name.LOADED,
+                    filteredSongsList
+                )
             } catch (e: Exception) {
                 Log.e(SongsApiSource::class.java.toString(), "Error" + e.message)
-                return State(State.Name.ERROR, emptyList())
+                return State(
+                    State.Name.ERROR,
+                    emptyList()
+                )
             }
         } else {
             Log.e(SongsApiSource::class.java.toString(), "onFailure" + songsResponse.code())
-            return State(State.Name.ERROR, emptyList())
+            return State(
+                State.Name.ERROR,
+                emptyList()
+            )
         }
     }
 
